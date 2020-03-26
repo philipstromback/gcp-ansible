@@ -8,9 +8,14 @@
 - name: debug message elasticservers
   debug:
     msg: "{{ elastic_servers }}"
-  when: debug
+
+- name: test pipeline file
+  template:
+    src: testing.yml.j2
+    dest: /tmp/test.yml
+    owner: root
+    group: root
 
 - name: debug message heapsize
   debug:
     msg: "{{ es_heap_size }}"
-  when: debug
