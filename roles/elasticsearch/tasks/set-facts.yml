@@ -9,6 +9,12 @@
   debug:
     msg: "{{ elastic_servers }}"
 
+- debug:
+    msg: "{{ hostvars[item]['ansible_default_ipv4']['address'] }}:9301"
+  with_items:
+    - "{{ elastic_servers }}"
+
+
 - name: debug message heapsize
   debug:
     msg: "{{ es_heap_size }}"
