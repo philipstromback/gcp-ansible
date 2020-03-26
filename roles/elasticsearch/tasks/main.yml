@@ -1,0 +1,3 @@
+---
+- name: set some facts
+  import_tasks: set-facts.yml

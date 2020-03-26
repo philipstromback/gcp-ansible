@@ -1,0 +1,7 @@
+- name: Set elastic cluster to join
+  set_fact:
+    elastic_servers: "{{ groups[service] | intersect(groups[scope]) | intersect(groups[datacenter]) }}"
+
+- name: debug message elasticservers
+  debug:
+    msg: "{{ elastic_servers }}"
