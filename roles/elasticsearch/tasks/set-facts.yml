@@ -10,7 +10,7 @@
     msg: "{{ elastic_servers }}"
 
 - debug:
-    msg: "{{ hostvars[item]['ansible_eth0']['ipv4']['address'] }}"
+    msg: "{{ hostvars[item] }}"
   with_items:
     - "{{ elastic_servers }}"
 
