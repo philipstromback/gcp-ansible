@@ -1,4 +1,4 @@
 ---
-hosts: *
+- hosts: *
   roles:
-  - { role: base, tags: [base] }
+    - { role: base, tags: [base] }
