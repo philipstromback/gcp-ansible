@@ -1,4 +1,4 @@
 - name: debug message elasticservers
   debug:
     msg: "{{ item }}"
-  loop: "{{ ansible_play_batch }}"
+  loop: "{{ groups['all'] }}"
