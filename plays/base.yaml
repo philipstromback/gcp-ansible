@@ -1,0 +1,4 @@
+---
+ hosts: *
+  roles:
+    - { role: base, tags: [base] }
