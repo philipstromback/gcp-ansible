@@ -1,16 +1,16 @@
 ---
-- block:
-  - name: Testing a host file
-    lineinfile:
-      dest: /tmp/test
-      regexp: '^{{ ansible_default_ipv4.address }}'
-      line: '{{ ansible_default_ipv4.address }} {{ fqdn }} {{ hostname }}'
-      state: present
-      backup: true
-      unsafe_writes: true
-    when: ansible_default_ipv4.address is defined
+- name: Touch the same file
+  file:
+    path: /temp/test
+    state: touch
+    mode: u+rw,g-wx,o-rwx
 
-  tags:
-    - hostname
-    - dns
-
+- name: Testing a host file
+  lineinfile:
+    dest: /tmp/test
+    regexp: '^{{ ansible_default_ipv4.address }}'
+    line: '{{ ansible_default_ipv4.address }} {{ fqdn }} {{ hostname }}'
+    state: present
+    backup: true
+    unsafe_writes: true
+  when: ansible_default_ipv4.address is defined
