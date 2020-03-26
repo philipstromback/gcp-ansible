@@ -4,7 +4,7 @@
 {% endif %}
 
 network.host: _site_
-discovery.zen.ping.unicast.hosts: [{% for host in elastic_servers %}"{{ host }}:9301"{% if not loop.last %},{% endif %}{% endfor %}]
+discovery.zen.ping.unicast.hosts: [{% for host in elastic_servers %}{{ hostvars[host]['ansible_default_ipv4']['address'] }}{% if not loop.last %},{% endif %}{% endfor %}
 
 {% if es_config['cluster.name'] is not defined %}
 cluster.name: {{service}}

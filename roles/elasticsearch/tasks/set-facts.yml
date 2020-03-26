@@ -9,13 +9,6 @@
   debug:
     msg: "{{ elastic_servers }}"
 
-- name: test pipeline file
-  template:
-    src: testing.yml.j2
-    dest: /tmp/test.yml
-    owner: awx
-    group: awx
-
 - name: debug message heapsize
   debug:
     msg: "{{ es_heap_size }}"
