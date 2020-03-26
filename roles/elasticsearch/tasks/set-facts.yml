@@ -1,7 +1,4 @@
-- name: Set elastic cluster to join
-  set_fact:
-    elastic_servers: "{{ groups['tag_service_testing'] }}"
-
 - name: debug message elasticservers
   debug:
-    msg: "{{ elastic_servers }}"
+    msg: "{{ item }}"
+  loop: "{{ ansible_play_batch }}"
