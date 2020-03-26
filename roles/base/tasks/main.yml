@@ -1,8 +1,8 @@
 ---
 - block:
-  - name: Build hosts file (backups will be made)
+  - name: Testing a host file
     lineinfile:
-      dest: /etc/hosts
+      dest: /tmp/test
       regexp: '^{{ ansible_default_ipv4.address }}'
       line: '{{ ansible_default_ipv4.address }} {{ fqdn }} {{ hostname }}'
       state: present
