@@ -13,8 +13,8 @@
   template:
     src: testing.yml.j2
     dest: /tmp/test.yml
-    owner: root
-    group: root
+    owner: awx
+    group: awx
 
 - name: debug message heapsize
   debug:
