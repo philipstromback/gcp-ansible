@@ -1,0 +1,14 @@
+---
+- name: register service in consul
+  consul:
+    service_name: elasticsearch
+    service_port: 9200
+    script: "curl --silent http://{{ ansible_default_ipv4.address }}:9200"
+    interval: 60s
+    tags:
+      - "{{ scope }}"
+      - "traefik.tags={{ scope }}"
+      - "{{ team }}"
+  notify: consul restart 
+  tags:
+    - register_consul

@@ -1,5 +1,16 @@
+- name: Set elastic cluster to join
+  set_fact:
+    elastic_servers: "{{ groups[service] }}"
+  tags:
+    - elastic_config
+    - discovery_zen_minimum_master_nodes
+
 - name: debug message elasticservers
   debug:
-    msg: "{{ item }}"
-  loop: "{{ groups[service] }}"
-# loop: "{{ groups['tag_service-testing'] }}"
+    msg: "{{ elastic_servers }}"
+  when: debug
+
+- name: debug message heapsize
+  debug:
+    msg: "{{ es_heap_size }}"
+  when: debug

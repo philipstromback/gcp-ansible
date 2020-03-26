@@ -1,0 +1,9 @@
+---
+
+- name: Include optional user and group creation.
+  when: (es_user_id is defined) and (es_group_id is defined)
+  import_tasks: elasticsearch-optional-user.yml
+
+- name: Include specific Elasticsearch
+  import_tasks: elasticsearch-Debian.yml
+  when: ansible_os_family == 'Debian'
