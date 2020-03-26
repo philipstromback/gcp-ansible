@@ -10,7 +10,7 @@
     msg: "{{ elastic_servers }}"
 
 - debug:
-    msg: "{{ hostvars['gcp-instance-74c10c639db56bed860d'] }}"
+    msg: "{{ hostvars[item]['gce_private_ip'] }}"
   with_items:
     - "{{ elastic_servers }}"
 
