@@ -46,9 +46,7 @@ path.logs: {{ log_dir }}
 {% endif %}
 {% endif %}
 
-{% if (es_version | version_compare('6.0.0', '<')) %}
 indices.store.throttle.max_bytes_per_sec: 150mb
-{% endif %}
 
 {%if discovery_zen_minimum_master_nodes is defined%}
 discovery.zen.minimum_master_nodes: {{ discovery_zen_minimum_master_nodes }}
