@@ -1,9 +1,55 @@
----
 
-- name: Include optional user and group creation.
-  when: (es_user_id is defined) and (es_group_id is defined)
-  import_tasks: elasticsearch-optional-user.yml
+{% if es_config %}
+{{ es_config | to_nice_yaml }}
+{% endif %}
 
-- name: Include specific Elasticsearch
-  import_tasks: elasticsearch-Debian.yml
-  when: ansible_os_family == 'Debian'
+network.host: _site_
+discovery.zen.ping.unicast.hosts: [{% for host in elastic_servers %}"{{ hostvars[host]['ansible_default_ipv4']['address'] }}:9301"{% if not loop.last %},{% endif %}{% endfor %}]
+
+{% if es_config['cluster.name'] is not defined %}
+cluster.name: {{service}}
+{% endif %}
+
+{% if es_config['node.name'] is not defined %}
+node.name: {{inventory_hostname}}
+{% endif %}
+
+#################################### Paths ####################################
+
+# Path to directory containing configuration (this file and logging.yml):
+
+path.data: {{ data_dirs }}
+
+path.logs: {{ log_dir }}
+
+{% if es_enable_xpack %}
+{% if not "security" in es_xpack_features %}
+#xpack.security.enabled: false
+{% endif %}
+
+{% if not "monitoring" in es_xpack_features %}
+#xpack.monitoring.enabled: false
+{% endif %}
+
+{% if not "alerting" in es_xpack_features %}
+#xpack.watcher.enabled: false
+{% endif %}
+
+{% if not "ml" in es_xpack_features %}
+#xpack.ml.enabled: false
+{% endif %}
+
+{% if not "graph" in es_xpack_features %}
+#xpack.graph.enabled: false
+{% endif %}
+{% endif %}
+
+{%if discovery_zen_minimum_master_nodes is defined%}
+discovery.zen.minimum_master_nodes: {{ discovery_zen_minimum_master_nodes }}
+{%endif%}
+# Time to wait for additional nodes after recover_after_nodes is met.
+gateway.recover_after_time: {{ gateway_recover_after_time }}m
+{%if gateway_expected_nodes is defined%}
+# Inform ElasticSearch how many nodes form a full cluster. If this number is met, start up immediately.
+gateway.expected_nodes: {{ gateway_expected_nodes }}
+{%endif%}
