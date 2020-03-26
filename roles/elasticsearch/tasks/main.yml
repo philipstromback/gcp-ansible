@@ -92,8 +92,3 @@
   when: es_templates
   tags:
       - templates
-
-- name: register service in consul
-  import_tasks: register-consul.yml
-  tags:
-    - register_consul
