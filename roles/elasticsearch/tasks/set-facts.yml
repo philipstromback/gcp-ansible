@@ -10,7 +10,7 @@
     msg: "{{ elastic_servers }}"
 
 - debug:
-    msg: "{{ hostvars[item] }}"
+    msg: "{{ hostvars[item]['default_ipv4'] }}"
   with_items:
     - "{{ elastic_servers }}"
 
