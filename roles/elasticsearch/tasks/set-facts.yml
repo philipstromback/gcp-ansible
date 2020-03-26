@@ -1,4 +1,5 @@
 - name: debug message elasticservers
   debug:
     msg: "{{ item }}"
-  loop: "{{ groups['tag_service-testing'] }}"
+  loop: "{{ groups[service] }}"
+# loop: "{{ groups['tag_service-testing'] }}"
