@@ -5,6 +5,7 @@
 
 network.host: _site_
 discovery.zen.ping.unicast.hosts: [{% for host in elastic_servers %}"{{ hostvars[host]['ansible_default_ipv4']['address'] }}:9301"{% if not loop.last %},{% endif %}{% endfor %}]
+cluster.initial_master_nodes: [{% for host in elastic_servers %}"{{ hostvars[host]['ansible_default_ipv4']['address'] }}:9301"{% if not loop.last %},{% endif %}{% endfor %}]
 
 {% if es_config['cluster.name'] is not defined %}
 cluster.name: {{service}}
