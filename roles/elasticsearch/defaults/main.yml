@@ -21,7 +21,7 @@ es_group: elasticsearch
 es_config_log4j2: log4j2.properties.j2
 #Need to provide default directories
 es_pid_dir: "/var/run/elasticsearch"
-es_data_dirs: "/zpool_default/data/elasticsearch"
+es_data_dirs: "/var/data/elasticsearch"
 es_log_dir: "/var/log/elasticsearch"
 es_max_open_files: 65536
 es_max_threads: 8192
