@@ -3,7 +3,7 @@
 {{ es_config | to_nice_yaml }}
 {% endif %}
 
-network.host: _site_
+network.host: 0.0.0.0
 discovery.zen.ping.unicast.hosts: [{% for host in elastic_servers %}"{{ hostvars[host]['gce_private_ip'] }}:9301"{% if not loop.last %},{% endif %}{% endfor %}]
 cluster.initial_master_nodes: [{% for host in elastic_servers %}"{{ hostvars[host]['gce_private_ip'] }}:9301"{% if not loop.last %},{% endif %}{% endfor %}]
 
