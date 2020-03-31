@@ -1,5 +1,5 @@
 ---
-gateway_recover_after_time: 5
+gateway_recover_after_time: 1
 use_system_d: true
 debug: false
 es_major_version: "7.x"
