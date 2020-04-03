@@ -1,0 +1,29 @@
+---
+
+- name: Intialize lvm
+  lvg:
+    vg: {{ vg }}
+    pvs: {{ discover_disk }}
+
+- name: setup volume group
+  lvol:
+    vg: {{ vg }}
+    lv: {{ lv }}
+    size: +100%FREE
+
+- name: ensure {{ mountpoint }} is present
+  file:
+    path: {{ mountpoint }}
+    state: directoru
+
+- name: set filesystem
+  filesystem:
+    dev: /dev/{{ vg }}/{{ lv }}
+    fstype: {{ fs_type }}
+
+- name: mount disk to mountpoint
+  mount:
+    name: {{ mountpoint }}
+    state: mounted
+    src: /dev/{{ vg }}/{{ lv }}
+    fstype: {{ fs_type }}

@@ -1,0 +1,11 @@
+---
+
+- name: Get data disk from instance
+  shell: |
+    ls /dev/{{ disk_prefx }}* | grep -v {{ disk_prefix }}a | egrep -v '{{ disk_prefix }}$' |  sed '/[09]$/d'
+  register: discover_disk
+  failed_when: False
+  changed_when: False
+
+- debug:
+    msg: "Data disk: {{ discover_disk.stdout_lines }}"

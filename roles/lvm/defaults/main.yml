@@ -1,0 +1,7 @@
+---
+
+fs_type: 'xfs'
+mountpoint: '/var/data'
+vg: 'gcp'
+lv: 'data'
+disk_prefix: 'sd'
