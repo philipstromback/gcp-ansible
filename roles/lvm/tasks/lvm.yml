@@ -3,7 +3,7 @@
 - name: Intialize lvm
   lvg:
     vg: "{{ vg }}"
-    pvs: "{{ discover_disk }}"
+    pvs: "{{ union(discover_disk) }}"
 
 - name: setup volume group
   lvol:
