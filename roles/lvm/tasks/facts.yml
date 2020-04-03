@@ -2,7 +2,7 @@
 
 - name: Get data disk from instance
   shell: |
-    ls /dev/{{ disk_prefix }}* | grep -v {{ disk_prefix }}a | egrep -v '{{ disk_prefix }}b$' |  sed '/[09]$/d'
+    ls /dev/{{ disk_prefix }}b | sed '/[09]$/d'
   register: discover_disk
   failed_when: False
   changed_when: False
