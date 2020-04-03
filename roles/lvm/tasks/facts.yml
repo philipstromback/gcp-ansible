@@ -8,4 +8,7 @@
   changed_when: False
 
 - debug:
-    msg: "Data disk: {{ discover_disk.stdout_lines | join(',') }}"
+    msg: "Data disk: {{ discover_disk.stdout_lines }}"
+
+- set_fact:
+    disk: "{{ discover_disk.stdout_lines | join(',') }}"
