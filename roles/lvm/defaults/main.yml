@@ -2,6 +2,6 @@
 
 fs_type: 'xfs'
 mountpoint: '/var/data'
-vg: 'gcp'
+vg: 'cmek'
 lv: 'data'
 disk_prefix: 'sd'

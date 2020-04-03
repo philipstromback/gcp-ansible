@@ -1,5 +1,6 @@
 - name: elastic role 
   hosts: all
   roles:
+    - lvm
     - elasticsearch
 
